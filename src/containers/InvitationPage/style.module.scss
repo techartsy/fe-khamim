@@ -3,6 +3,12 @@
   @include body;
   background-color: $color-black;
   overflow-x: hidden;
+  max-width: 412px;
+  @include apply-at-lg-size {
+    @include directionY;
+    align-items: center;
+    @include content-center;
+  }
   .invitationContainer {
     .header {
       @include directionY;

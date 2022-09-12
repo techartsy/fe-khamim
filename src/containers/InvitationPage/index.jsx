@@ -147,15 +147,15 @@ const InvitationPage = () => {
       gapi.auth2.getAuthInstance().signIn()
       .then(() => {
         var event = {
-          'summary': 'Gilang & Vina Wedding Day',
+          'summary': 'Ririn & Khamiem Wedding Day',
           'location': 'Jl. Sambiroto VII RT.10 RW.02, Tembalang, Semarang',
           'description': 'Wedding Invitation',
           'start': {
-            'dateTime': '2022-07-17T10:00:00',
+            'dateTime': '2022-10-02T10:00:00',
             'timeZone': 'Asia/Jakarta',
           },
           'end': {
-            'dateTime': '2022-07-17T23:00:00',
+            'dateTime': '2022-10-02T23:00:00',
             'timeZone': 'Asia/Jakarta',
           },
           'recurrence': [
@@ -252,7 +252,7 @@ const InvitationPage = () => {
     let difference;
     if (isIOS) {
       nextYear = year;
-      let fullDate = "2022-07-17 09:00:00";
+      let fullDate = "2022-10-02 09:00:00";
       let date = new Date(fullDate);
       // In case its IOS, parse the fulldate parts and re-create the date object.
       if(Number.isNaN(date.getMonth())) {
@@ -261,7 +261,7 @@ const InvitationPage = () => {
       }
       difference = +date - +new Date();
     } else {
-      difference = +new Date(`07/17/${year}/09:00`) - +new Date();
+      difference = +new Date(`10/02/${year}/09:00`) - +new Date();
     }
     let timeLeft = {};
     if (difference > 0) {
@@ -346,7 +346,7 @@ const InvitationPage = () => {
   };
 
   const goToMaps = () => {
-    window.open('https://goo.gl/maps/E3guzxp6gxcionVJ6', '_blank');
+    window.open('https://goo.gl/maps/MY1iXTT1DSXbsfsu7', '_blank');
   };
 
   const radioAttend = (e) => {
@@ -383,9 +383,9 @@ const InvitationPage = () => {
         <Fade delay={2000} duration={3000}>
           <div className={classes.headerAnimation}>
             <div className={classes.headerTitle}>
-              <p className={classes.titleTop}>Gilang</p>
+              <p className={classes.titleTop}>Ririn</p>
               <p className={classes.titleMid}>&</p>
-              <p className={classes.titleBottom}>Vina</p>
+              <p className={classes.titleBottom}>Khamiem</p>
             </div>
           </div>
         </Fade>
@@ -402,11 +402,24 @@ const InvitationPage = () => {
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
             <Fade when={!showPopupProkes} left duration={3000}>
-              <p>Sebab kurasa ini sangat spiritual <br/>
-              Ku tak bisa tulis yang indah<br/>
-              Dan berbunga-bunga<br/>
-              Yang kuingin langsung saja menikam di hati<br/>
-              Ku tak rela kau menangis.
+              <p>Ada tujuh miliar manusia di bumi ini<br>
+              </br>Kadang aku berpikir Tuhan memilih hatiku untuk tetap ditempatkan di sebelahmu<br>
+              </br>
+Semestaku sebelum kau adalah konstelasi yang sistematis, mengandung stagnansi yang konservatif
+Aku tidak tahu caranya menghargai mentari yang membakar langit hingga kemerahan
+Aku tidak tahu caranya mencium wangi hujan yang membasahi bumi
+Aku tidak paham di mana indahnya kalimat yang termaktub dalam larik-larik puisi
+
+Semestaku mungil, sebatas ujung bahu kananmu sampai ujung bahu kirimu
+Sebab telah dirasa telah cukup aman aku berdiam dalam dekapmu
+Memandang teduh manikmu, juga dengar tenang vokalmu
+
+Semestaku luas, tidak dapat ditemuka satuan untuk hitung ruang hatimu
+Sebab dirasa memang terlalu muluk harap manusia untuk bisa konversikan sabarmu, halusmu, juga segala hangatmu
+
+Kamu, semestaku. Satu kontradiksi maha ambigu yang ingin kubiarkan tetap begitu
+Mungil pun luas, untukku
+
               </p>
               <p className={classes.quoteAuthor}>~ Jason Ranti ~</p>
             </Fade>
@@ -515,8 +528,8 @@ const InvitationPage = () => {
             <div className={classes.card}>
               <img className={classes.bridesImage} src={Female} alt="brides" />
               <div className={classes.profileInfo}>
-                <p className={classes.bridess}>Vina Fajarwati</p>
-                <p className={classes.parents}>Putri Terakhir dari{width === 'lg' && <br />} Bapak Sudirjan (Alm) & Ibu Jariyah</p>
+                <p className={classes.bridess}>Ririn Wulansari, S.Pd.</p>
+                <p className={classes.parents}>Putri Kedua dari{width === 'lg' && <br />} Bapak Zeni Trian Rikanda & Ibu Soniyah</p>
               </div>
             </div>
           </Fade>
@@ -524,8 +537,8 @@ const InvitationPage = () => {
             <div className={classes.card}>
               <img className={classes.bridesImage} src={Male} alt="brides" />
               <div className={classes.profileInfo}>
-                <p className={classes.bridess}>Gilang Firdaus</p>
-                <p className={classes.parents}>Putra Pertama dari{width === 'lg' && <br />} Bapak Dani Hidayat & Ibu Fera</p>
+                <p className={classes.bridess}>Khamiem Masduki, S.Pd. </p>
+                <p className={classes.parents}>Putra Pertama dari{width === 'lg' && <br />} Bapak Rochmat (Alm.) & Ibu Kalsumi</p>
               </div>
             </div>
           </Fade>
@@ -558,7 +571,7 @@ const InvitationPage = () => {
             <div className={classes.calender}>
               <img src={calender} alt='calender' />
               <p>
-                MINGGU, 17 JULI 2022
+                MINGGU, 2 Oktober 2022
               </p>
             </div>
             <div className={classes.timesWraper}>
@@ -566,12 +579,13 @@ const InvitationPage = () => {
                 <>
                   <div className={classes.time}>
                     <img src={time} alt='time' />
-                    <p>AKAD : PUKUL 09.00 WIB</p>
+                    <p>AKAD : PUKUL 09.00 - 10.00
+                       WIB</p>
                   </div>
                   <div className={classes.time}>
                     <img src={time} alt='time' />
                     <p>
-                      RESEPSI : PUKUL 10.00 WIB s/d Selesai
+                      RESEPSI : PUKUL 11.00 WIB s/d Selesai
                     </p>
                   </div>
                 </>
@@ -581,7 +595,7 @@ const InvitationPage = () => {
                     <img src={time} alt='time' />
                     <p>AKAD 09.00 WIB</p>
                     <div className={classes.separator} />
-                    <p>RESEPSI 10.00 WIB - SELESAI</p>
+                    <p>RESEPSI 11.00 WIB - SELESAI</p>
                   </div>
                 </>
               )}
@@ -594,7 +608,7 @@ const InvitationPage = () => {
             <div className={classes.locationWraper}>
               <img src={Location} alt='location' />
               <p>
-                JL. SAMBIROTO VII RT.10 RW.02 KEC.TEMBALANG KOTA SEMARANG
+              Dusun Cikalong RT. 01/RW. 01 Desa Tomo, Kecamatan Tomo, Kabupaten Sumedang, Jawa Barat
               </p>
             </div>
             <div onClick={goToMaps} className={classes.btnmap}>
@@ -766,8 +780,9 @@ const InvitationPage = () => {
             <div className={classes.infoWrapper}>
               <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
               <p className={classes.infoDetail}>
-                Nama : Gilang Firdaus <br />
-                Alamat : Jl. Sambiroto VII RT.10 RW.02,<br />Tembalang, Semarang
+                Nama : Khamiem Masduki, S.Pd. <br />
+                Alamat : Jalan Kelurahan Pangkalan Jati RT. 03/02 No. 65F, Kelurahan Pangkalan Jati, Kecamatan
+Cinere, Kota Depok, Jawa Barat 16513<br />
               </p>
               <div className={classes.copyWraper}>
                 <img className={classes.copy} src={numbercopy} onClick={copyAddress} alt="copy-text" />
