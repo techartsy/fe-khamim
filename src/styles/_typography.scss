@@ -8,6 +8,9 @@
   font-family: "Charm", cursive;
   color: $color-gold;
 }
+@mixin useNautigal {
+  font-family: 'The Nautigal', cursive;
+}
 @mixin useDancing {
   font-family: 'Dancing Script', cursive;
 }

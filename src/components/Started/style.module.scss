@@ -3,73 +3,74 @@
 .container {
   @include body;
   @include directionY;
-  background-color: #222222;
+  justify-content: center;
   height: 100vh;
-  overflow-y: hidden;
+  background-image: url(https://res.cloudinary.com/dwvzfit8v/image/upload/v1662998497/Invitation%20Assets/khamim/Khamiem_Ririn_2_ucrdym.webp);
+  // background-image: url(https://res.cloudinary.com/dwvzfit8v/image/upload/v1663003768/Invitation%20Assets/khamim/Khamiem_Ririn_ohocsg.webp);
+  // background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  // background-position: right;
+  max-width: 412px;
   @include apply-at-lg-size {
     @include directionY;
-    align-items: center;
     @include content-center;
+    // background-position: right center;
+    align-items: center;
+    background-size: 108% 100%;
+    // background-size: auto;
   }
   .wraper {
     @include directionY;
     align-items: center;
-    justify-content: space-between;
+    height: 30%;
+    margin-top: 40%;
+    justify-content: flex-end;
     @include apply-at-lg-size {
-      max-width: 360px;
-      height: 100%;
-    }
-    @include apply-at-sm-size {
-      overflow-y: hidden;
-    }
-    .pigura {
-      width: 100%;
-    }
-    .top {
-      width: 50%;
-      margin-top: 3%;
-      @include apply-at-lg-size {
-        width: 60%;
-        margin-bottom: 5%;
-      }
+      align-self: flex-start;
     }
     @include apply-at-sm-size {
       width: 100%;
     }
     .toWraper {
-      font-size: 20px;
       @include directionY;
+      @include useNautigal;
       align-items: center;
+      text-align: center;
+      align-self: flex-start;
+      padding-left: 6%;
+      max-width: 320px;
       justify-content: center;
-      @include apply-at-sm-md-size {
-        font-size: 16px;
-        position: relative;
-        z-index: 2;
-      }
+      font-size: 32px;
+      line-height: 28px;
+      letter-spacing: 0.07em;
+      position: relative;
+      z-index: 2;
       .to {
         margin: -14px 0;
       }
     }
     .btn {
-      width: 180px;
-      margin-top: 5%;
-      height: 40px;
-      font-size: 18px;
+      width: 100%;
+      margin-top: 65%;
+      padding-left: 10%;
       @include content-center;
       @include directionX;
-      align-items: center;
-      justify-content: center;
       border-radius: 6px;
-      background-color: $color-gold;
       color: $color-black;
-      cursor: pointer;
-      @include apply-at-sm-md-size {
-        font-size: 14px;
-        min-width: 110px;
-        margin-top: 4%;
-        margin-bottom: 5%;
-        position: relative;
-        z-index: 1;
+      font-size: 14px;
+      min-width: 110px;
+      margin-top: 4%;
+      margin-bottom: 5%;
+      position: relative;
+      z-index: 1;
+      .image {
+        width: 45%;
+        cursor: pointer;
+        @include apply-at-lg-size {
+          width: 60%;
+        }
       }
     }
     .bottom {
