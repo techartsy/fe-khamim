@@ -442,11 +442,6 @@ const InvitationPage = () => {
               hangatmu
               </p>
             </Fade>
-            {/* <Fade when={!showPopupProkes} right duration={3000}>
-              <div className={classes.logoContainer}>
-                <img src={ksection31} className={classes.quoteAuthor} alt="logo" />
-              </div>
-            </Fade> */}
           </div>
         </div>
       </div>
