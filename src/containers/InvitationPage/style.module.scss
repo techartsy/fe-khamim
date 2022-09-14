@@ -343,14 +343,12 @@
           }
           .title {
             @include content-center;
-            // height: 80px;
             display: flex;
             justify-content: center;
             font-size: 30px;
             @include apply-at-sm-md-size {
               border: none;
               font-size: 16px;
-              // height: 100%;
               margin-top: -5%;
             }
           }
@@ -358,7 +356,6 @@
             .verse {
               width: 90%;
               height: auto;
-              // margin-top: 5%;
             }
             .separator {
               @include directionX;
@@ -390,12 +387,10 @@
       }
     }
     .bridesProfileContainer {
-      // @include section-spacing;
       padding: 3% 0;
       background-image: url(https://res.cloudinary.com/dwvzfit8v/image/upload/v1663179920/Invitation%20Assets/khamim/bgbride_bqgvy5.webp);
       height: 100%;
       width: 100%;
-      // border: none;
       object-fit: cover;
       background-repeat: no-repeat;
       background-size: cover;
@@ -1040,7 +1035,6 @@
               @include directionX;
               @include content-center;
               max-width: 570px;
-              // border: 1px solid $color-gold;
               border-radius: 9px;
               @include apply-at-sm-md-size {
                 width: 90%;
