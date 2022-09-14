@@ -402,31 +402,18 @@ const InvitationPage = () => {
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
             <Fade when={!showPopupProkes} left duration={3000}>
-              <p>Ada tujuh miliar manusia di bumi ini<br>
-              </br>Kadang aku berpikir Tuhan memilih hatiku untuk tetap ditempatkan di sebelahmu<br>
-              </br>
-Semestaku sebelum kau adalah konstelasi yang sistematis, mengandung stagnansi yang konservatif
-Aku tidak tahu caranya menghargai mentari yang membakar langit hingga kemerahan
-Aku tidak tahu caranya mencium wangi hujan yang membasahi bumi
-Aku tidak paham di mana indahnya kalimat yang termaktub dalam larik-larik puisi
-
-Semestaku mungil, sebatas ujung bahu kananmu sampai ujung bahu kirimu
-Sebab telah dirasa telah cukup aman aku berdiam dalam dekapmu
-Memandang teduh manikmu, juga dengar tenang vokalmu
-
-Semestaku luas, tidak dapat ditemuka satuan untuk hitung ruang hatimu
-Sebab dirasa memang terlalu muluk harap manusia untuk bisa konversikan sabarmu, halusmu, juga segala hangatmu
-
-Kamu, semestaku. Satu kontradiksi maha ambigu yang ingin kubiarkan tetap begitu
-Mungil pun luas, untukku
-
+              <p>Ada tujuh miliar manusia di bumi ini<br/>
+                Kadang aku berpikir Tuhan memilih hatiku untuk tetap<br/> ditempatkan di sebelahmu<br/>
+                Semestaku sebelum kau adalah konstelasi yang sistematis,<br/> mengandung stagnansi yang konservatif<br/>
+                Aku tidak tahu caranya menghargai mentari yang <br/>membakar langit hingga kemerahan<br/>
+                Aku tidak tahu caranya mencium wangi hujan yang<br/> membasahi bumi<br/>
+                Aku tidak paham di mana indahnya kalimat yang<br/> termaktub dalam larik-larik puisi<br/>
               </p>
-              <p className={classes.quoteAuthor}>~ Jason Ranti ~</p>
             </Fade>
           </div>
         </div>
         <div className={classes.imageWrapper}>
-          <img src={ksection2} alt='Brides' />
+          <img src='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663173709/Invitation%20Assets/khamim/Section_2-1_ckbqnf.webp' alt='Brides' />
         </div>
       </div>
     );
@@ -436,55 +423,98 @@ Mungil pun luas, untukku
     return (
       <div className={classes.secondStoryContainer}>
         <div className={classes.imageWrapper}>
-          <img src={ksection3} alt="Brides" />
+          <img src='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663174305/Invitation%20Assets/khamim/Section_3_nuffhd.webp' alt="Brides" />
         </div>
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
             <Fade when={!showPopupProkes} right duration={3000}>
               <p>
-                Saat tak tahu arah kau disana<br/>
-                Menjadi gagah saat ku tak bisa<br/>
-                Sedikit ku jelaskan tentangku dan kamu<br/>
-                Agar seisi dunia tahu<br/>
-                Keras kepalaku sama denganmu<br/>
-                Caraku marah, caraku tersenyum<br/>
-                Seperti detak jantung yang bertaut<br/>
-                Nyawaku nyala karena denganmu<br/>
-                Aku masih ada sampai di sini<br/>
-                Melihatmu kuat setengah mati<br/>
-                Seperti detak jantung yang bertaut<br/>
-                Nyawaku nyala karena denganmu
+              Semestaku mungil, sebatas ujung bahu kananmu <br/>
+              sampai ujung bahu kirimu<br/>
+              Sebab telah dirasa telah cukup aman aku berdiam<br/>
+              dalam dekapmu<br/>
+              Memandang teduh manikmu, juga dengar tenang <br/>
+              vokalmu<br/><br/>
+              Semestaku luas, tidak dapat ditemukan satuan untuk<br/>
+              hitung ruang hatimu<br/>
+              Sebab dirasa memang terlalu muluk harap manusia<br/>
+              untuk bisa konversikan sabarmu, halusmu, juga segala<br/>
+              hangatmu
               </p>
             </Fade>
-            <Fade when={!showPopupProkes} right duration={3000}>
+            {/* <Fade when={!showPopupProkes} right duration={3000}>
               <div className={classes.logoContainer}>
                 <img src={ksection31} className={classes.quoteAuthor} alt="logo" />
               </div>
+            </Fade> */}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const generateThirdStory = () => {
+    return (
+      <div className={classes.thirdStorySection}>
+        <div className={classes.storyWrapper}>
+          <div className={classes.story}>
+            <Fade when={!showPopupProkes} left duration={3000}>
+              <p>
+                Kamu, semestaku. Satu kontradiksi maha ambigu yang<br/>
+                ingin kubiarkan tetap begitu<br/>
+                Mungil pun luas, untukku<br/><br/>
+
+                Bagiku kau adalah buku yang harus aku miliki<br/>
+                Buku yang tidak semua orang bisa mengerti<br/>
+                Buku yang sulit untuk dipahami<br/>
+                Buku yang setiap detiknya berganti isi<br/><br/>
+
+                Kubaca setiap lembarnya<br/>
+                Sampai aku mengerti dan tahu maksudnya<br/>
+                Kadang juga aku harus mengisi kalimat<br/>
+                sederhananya<br/>
+                Agar aku merasa nyaman untuk membacanya<br/>
+              </p>
             </Fade>
           </div>
-          <Fade when={!showPopupProkes} right duration={3000}>
-            <p className={classes.author}>~ Nadin Amizah ~</p>
-          </Fade>
+        </div>
+        <div className={classes.imageWrapper}>
+          <img src='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663175181/Invitation%20Assets/khamim/Section_4wp_ej6bpz.webp' alt='Brides' />
         </div>
       </div>
     );
   };
 
-  const secondImageSection = () => {
+  const generateFourStory = () => {
     return (
-      <div className={classes.paralaxx}>
-        <div className={classes.paralaxxWraper}>
+      <div className={classes.fourStorySection}>
+        <div className={classes.storyWrapper}>
+          <div className={classes.story}>
+            <Fade when={!showPopupProkes} left duration={3000}>
+              <p>
+                Aku dan kamu adalah buku nyata<br/>
+                Yang setiap kalimatnya harus kita susun bersama<br/>
+                Agar terdengar indah dan elok untuk dibaca<br/>
+                Dan kita harus tulis kalimat terakhirnya dengan<br/>
+                cerita bahagia<br/>
+              </p>
+            </Fade>
+          </div>
+        </div>
+        <div className={classes.imageWrapper}>
+          <img src='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663175292/Invitation%20Assets/khamim/Section_5wp_m4beqy.webp' alt='Brides' />
         </div>
       </div>
     );
   };
-
-  const iosSecondImageSection = () => {
-    return (
-      <div className={classes.iosSecondImageSection}>
-        <img src={Story} className={classes.secondImageIOS} alt="secondary" />
+  
+  const generateGallery = () =>{
+    return(
+      <div className={classes.galleryContainer}>
+        <img src="https://res.cloudinary.com/dwvzfit8v/image/upload/v1663176695/Invitation%20Assets/khamim/Section_6-1wp_g37wqb.webp" alt="gallery-item" />
+        <img src="https://res.cloudinary.com/dwvzfit8v/image/upload/v1663176690/Invitation%20Assets/khamim/Section_6-2wp_bvvwxt.webp" alt="gallery-item" />
       </div>
-    );
+    )
   };
 
   const summarySection = () => {
@@ -493,6 +523,9 @@ Mungil pun luas, untukku
         <div className={classes.bg}>
           <div className={classes.summaryWraper}>
             <Fade duration={4000}>
+              <div className={classes.ornamentWrapper}>
+                <img src="https://res.cloudinary.com/dwvzfit8v/image/upload/v1663177618/Invitation%20Assets/khamim/Section_7-1wp_silyyc.webp" alt="ornament" />
+              </div>
               <div className={classes.title}>
                 <p>
                   QS. Ar-Rum ayat 21
@@ -502,11 +535,12 @@ Mungil pun luas, untukku
                 <img src={ArRum} alt="Ar-Rum" className={classes.verse} />
                 <div className={classes.separator} />
                 <p className={classes.summarySection}>
-                  “Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia<br />
-                  menciptakan pasangan-pasangan untukmu dari jenismu sendiri, <br />
-                  agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan <br />
-                  di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu <br />
-                  benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.”<br /><br />
+                  Artinya : “Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia<br />
+                  menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar<br />
+                  kamu cenderung dan merasa tenteram kepadanya, dan Dia<br />
+                  menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada<br />
+                  yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah)<br />
+                  bagi kaum yang berpikir.”<br /><br />
                 </p>
               </div>
               <img src={wingg} alt='wingBottom' />
@@ -526,7 +560,7 @@ Mungil pun luas, untukku
         <div className={classes.profileWrapper}>
           <Fade left duration={3000}>
             <div className={classes.card}>
-              <img className={classes.bridesImage} src={Female} alt="brides" />
+              <img className={classes.bridesImage} src='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663179283/Invitation%20Assets/khamim/bridewp_imthv2.webp' alt="brides" />
               <div className={classes.profileInfo}>
                 <p className={classes.bridess}>Ririn Wulansari, S.Pd.</p>
                 <p className={classes.parents}>Putri Kedua dari{width === 'lg' && <br />} Bapak Zeni Trian Rikanda & Ibu Soniyah</p>
@@ -535,7 +569,7 @@ Mungil pun luas, untukku
           </Fade>
           <Fade right duration={3000}>
             <div className={classes.card}>
-              <img className={classes.bridesImage} src={Male} alt="brides" />
+              <img className={classes.bridesImage} src='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663179278/Invitation%20Assets/khamim/groomwp_yzy4wf.webp' alt="brides" />
               <div className={classes.profileInfo}>
                 <p className={classes.bridess}>Khamiem Masduki, S.Pd. </p>
                 <p className={classes.parents}>Putra Pertama dari{width === 'lg' && <br />} Bapak Rochmat (Alm.) & Ibu Kalsumi</p>
@@ -836,7 +870,9 @@ Cinere, Kota Depok, Jawa Barat 16513<br />
         {generateHeader()}
         {generateStory()}
         {generateSecondStory()}
-        {!isIOS ? secondImageSection() : iosSecondImageSection()}
+        {generateThirdStory()}
+        {generateFourStory()}
+        {generateGallery()}
         {summarySection()}
         {generateBridesProfile()}
         {eventDetail()}
