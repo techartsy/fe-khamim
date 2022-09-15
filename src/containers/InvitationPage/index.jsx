@@ -59,6 +59,15 @@ import ThirdImageSM from '../../static/images/thirdimage-sm.png';
 import ArRum from '../../static/images/Ar-rum.png';
 import classes from './style.module.scss';
 
+const Section9 = 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663226908/Invitation%20Assets/khamim/Section_9wp_okoxgm.webp';
+const Section11= 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663231629/Invitation%20Assets/khamim/Section_11-1wp_l5zkmy.webp';
+const Section13= 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663240465/Invitation%20Assets/khamim/Section_13-1wp_ygxoa7.webp';
+const Section14= 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663240702/Invitation%20Assets/khamim/Section_14wp_umr5st.webp';
+const Section16= 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663241811/Invitation%20Assets/khamim/Section_16wp_r2qc93.webp';
+const cardbri='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663243071/Invitation%20Assets/khamim/briwp_szsaq6.webp';
+const cardmandiri= 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663243074/Invitation%20Assets/khamim/mandiriwp_qytlet.webp';
+const Section18= 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663245346/Invitation%20Assets/khamim/section_18-1wp_woqbdu.webp';
+
 const InvitationPage = () => {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -70,12 +79,14 @@ const InvitationPage = () => {
   const [attend, setAttend] = useState('');
   const [showPopupProkes, setShowPopupProkes] = useState(false);
   const [openConfirmation, setOpenConfirmation] = useState(false);
-  const [notif, setNotif] = useState('');
+  const [notifBRI, setNotifBRI] = useState('');
+  const [notifMandiri, setNotifMandiri] = useState('');
   const [gifNotif, setGiftNotif] = useState('');
   const [openPopupVoiceRecog, setOpenPopupVoiceRecog] = useState(false);
   let [popupCounter, setPopupCounter] = useState(0);
-  const wording = '1260010034469';
-  const giftAddress = 'Jl. Sambiroto VII RT.10 RW.02, Tembalang, Semarang';
+  const bri = '042801000784561';
+  const mandiri = '9000027381707';
+  const giftAddress = 'Jalan Kelurahan Pangkalan Jati RT. 03/02 No. 65F, Kelurahan Pangkalan Jati, Kecamatan Cinere, Kota Depok, Jawa Barat 16513';
   const dispatch = useDispatch();
   const location = useLocation();
   let name = location?.search?.split('=')[1];
@@ -117,11 +128,19 @@ const InvitationPage = () => {
     }
   }
 
-  const copyText = () => {
-    navigator.clipboard.writeText(wording)
-    setNotif('Copied')
+  const copyTextBri = () => {
+    navigator.clipboard.writeText(bri)
+    setNotifBRI('Copied')
     setTimeout(() => {
-      setNotif('')
+      setNotifBRI('')
+    }, 3000)
+  };
+
+  const copyTextMandiri = () => {
+    navigator.clipboard.writeText(mandiri)
+    setNotifMandiri('Copied')
+    setTimeout(() => {
+      setNotifMandiri('')
     }, 3000)
   };
 
@@ -347,6 +366,10 @@ const InvitationPage = () => {
 
   const goToMaps = () => {
     window.open('https://goo.gl/maps/MY1iXTT1DSXbsfsu7', '_blank');
+  };
+
+  const goToMapsTasyakuran = () => {
+    window.open('https://goo.gl/maps/f7CBLzFZtTgT66MH8','_blank')
   };
 
   const radioAttend = (e) => {
@@ -579,6 +602,66 @@ const InvitationPage = () => {
     );
   };
 
+  const generateSecondGallery = () => {
+    return (
+      <div className={classes.gallerySecondContainer}>
+        <img src={Section9} alt="foto" />
+      </div>
+    )
+  }
+
+  const eventTasyakuran = () => {
+    return (
+      <div className={classes.tasyakuranEvent}>
+        <Fade delay={1000} duration={4000}>
+          <img className={classes.topEvent} src={topevent} alt='top' />
+          <div className={classes.greeting}>
+            <p>
+              Assalamu'alaikum Warahmatullahi Wabarakatuh<br />
+            </p>
+            <p className={classes.subtitle}>
+            Puji syukur kami panjatkan kepada Allah SWT yang <br/>
+            telah melimpahkan rahmat dan hidayah-Nya.<br/>
+            Bersama ini kami mengundang Bapak/Ibu/Teman-teman<br/>
+            dan berkenan untuk menghadiri acara<br/>
+            Tasyakuran Pernikahan kami<br/>
+            </p>
+          </div>
+          <div className={classes.details}>
+            <div className={classes.calender}>
+              <img src={calender} alt='calender' />
+              <p>
+                Jum'at, 30 September 2022
+              </p>
+            </div>
+            <div className={classes.locationWraper}>
+              <img src={Location} alt='location' />
+              <p>
+              Jalan Kelurahan Pangkalan Jati RT. 03/02 No. 65F, Kelurahan<br/>
+              Pangkalan Jati, Kecamatan Cinere,<br/>
+              Kota Depok, Jawa Barat 16513<br/>
+              </p>
+            </div>
+            <div onClick={goToMapsTasyakuran} className={classes.btnmap}>
+              <p>Menuju Lokasi</p>
+              <div className={classes.imageWrapper}>
+                <img src={plane} alt='gotomap' />
+              </div>
+            </div>
+          </div>
+        </Fade>
+      </div>
+    );
+  };
+
+  const generateThirdGallery = () => {
+    return (
+      <div className={classes.galleryThirdContainer}>
+        <img src={Section11} alt="foto" />
+      </div>
+    )
+  }
+
   const eventDetail = () => {
     return (
       <div className={classes.event}>
@@ -589,49 +672,34 @@ const InvitationPage = () => {
               Assalamu'alaikum Warahmatullahi Wabarakatuh<br />
             </p>
             <p className={classes.subtitle}>
-              Maha Suci Allah {width !== 'lg' && <br />} yang telah menciptakan makhluk-Nya berpasang-pasangan. <br />
-              Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami
+              Maha Suci Allah yang telah menciptakan<br />
+              makhluk-Nya berpasang-pasangan. <br />
+              Ya Allah semoga ridho-Mu tercurah mengiringi<br />
+              pernikahan kami
             </p>
           </div>
           <div className={classes.details}>
-            <div className={classes.titleWraper}>
-              <p className={classes.title}>AKAD & RESEPSI</p>
-            </div>
             <div className={classes.calender}>
               <img src={calender} alt='calender' />
               <p>
                 MINGGU, 2 Oktober 2022
               </p>
             </div>
-            <div className={classes.timesWraper}>
-              {width === 'lg' ? (
-                <>
-                  <div className={classes.time}>
-                    <img src={time} alt='time' />
-                    <p>AKAD : PUKUL 09.00 - 10.00
-                       WIB</p>
-                  </div>
-                  <div className={classes.time}>
-                    <img src={time} alt='time' />
-                    <p>
-                      RESEPSI : PUKUL 11.00 WIB s/d Selesai
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className={classes.timeMobileWrapper}>
-                    <img src={time} alt='time' />
-                    <p>AKAD 09.00 WIB</p>
-                    <div className={classes.separator} />
-                    <p>RESEPSI 11.00 WIB - SELESAI</p>
-                  </div>
-                </>
-              )}
-            </div>
             <div className={classes.btnCalendarContainer}>
               <div className={classes.btnCalendarWrapper} onClick={addEvent}>
                 <p>Tambahkan ke Kalender</p>
+              </div>
+            </div>
+            <div className={classes.timesWraper}>
+              <div className={classes.timeMobileWrapper}>
+                <p className={classes.eventTitle}>Akad</p>
+                <img src={time} alt='time' />
+                <p>Pukul 09.00 s.d 10.00 WIB</p>
+              </div>
+              <div className={classes.timeMobileWrapper}>
+                <p className={classes.eventTitle}>Resepsi</p>
+                <img src={time} alt='time' />
+                <p>Pukul 11.00 WIB s.d Selesai</p>
               </div>
             </div>
             <div className={classes.locationWraper}>
@@ -652,30 +720,18 @@ const InvitationPage = () => {
     );
   };
 
-  const thirdImageSeparator = () => {
+  const generateFourGallery = () => {
     return (
-      <div>
-        <div className={classes.thirdImageSection}>
-          <div className={classes.paralaxxWraper}></div>
-        </div>
+      <div className={classes.galleryFourContainer}>
+        <img src={Section13} alt="foto" />
       </div>
-    );
-  };
-
-  const iosThirdImageSeparator = () => {
-    return (
-      <div>
-        <div className={classes.iosThirdImageSeparator}>
-          <img src={ThirdImageSM} alt="" className={classes.thirdImage} />
-        </div>
-      </div>
-    );
-  };
+    )
+  }
 
   const attendingSection = () => {
     return (
       <div className={classes.attendingContainer}>
-        <p className={classes.title}>"UCAPAN & DOA"</p>
+        <p className={classes.title}>"Ucapan & Doa"</p>
         <div className={classes.attendingWraper}>
           <div className={classes.formWraper}>
             <div className={classes.dropdownSection} onClick={showFormAttending}>
@@ -724,10 +780,11 @@ const InvitationPage = () => {
           </div>
           <Fade duration={3000}>
             <div className={classes.expressionSection}>
-              <img src={kattendingmeessage} alt="attending" />
+              <img src={Section14} alt="attending" />
               <p className={classes.expression}>
                 Ungkapan terima kasih yang tulus dari kami apabila<br />
-                Bapak/Ibu/Teman-teman berkenan hadir dan memberikan do'a restu
+                Bapak/Ibu/Teman-teman berkenan hadir <br />
+                dan memberikan do'a restu
               </p>
             </div>
           </Fade>
@@ -736,22 +793,35 @@ const InvitationPage = () => {
     );
   };
 
+  const generateFiveGallery = () => {
+    return (
+      <div className={classes.galleryFiveContainer}>
+        <img src={Section16} alt="foto" />
+      </div>
+    )
+  }
+
+  const generateSixGallery = () => {
+    return (
+      <div className={classes.gallerySixContainer}>
+        <img src={Section18} alt="foto" />
+      </div>
+    )
+  }
+
   const generateMessageSection = () => {
     return (
       <div className={classes.messageSectionContainer}>
         <div className={classes.sectionTitle}>
-          <p>Ucapan & Doa kamu</p>
+          <p>"Ucapan & Doa kamu"</p>
         </div>
         <div className={classes.mainContent}>
           <Fade duration={3000}>
-            <div className={classes.leftSection}>
-              <img src={gunungan} alt="gunungan" />
-              <p>“ Seutas Doa & Ucapan Untuk Kedua Mempelai ”</p>
-            </div>
           </Fade>
           <div className={classes.rightSection}>
             <div className={classes.imgWrapper}>
-              <img className={classes.image} src={MessageImg} alt="message" />
+              <img className={classes.image} src={Section14} alt="message" />
+              <p>“ Seutas Doa & Ucapan Untuk Kedua Mempelai ”</p>
             </div>
             <div className={classes.messageWrapper}>
               {messages && messages.map((item, idx) => {
@@ -800,18 +870,24 @@ const InvitationPage = () => {
           <div className={`${classes.giftInfoWraper} ${isShowGift ? classes.showGift : classes.hideGift} ${closeGift ? classes.closeGift : ''}`}>
             <div className={classes.imageDetail}>
               <img className={classes.rose} src={rosegift} alt="rose" />
-              <img className={classes.card} src={creditcard} alt="credit-card" />
+              <img className={classes.card} src={cardbri} alt="credit-card" />
               <div className={classes.copyWraper}>
-                <img className={classes.copy} src={numbercopy} onClick={copyText} alt="copy-text" />
-                <p className={classes.notifCopy}>{notif}</p>
+                <img className={classes.copy} src={numbercopy} onClick={copyTextBri} alt="copy-text" />
+                <p className={classes.notifCopy}>{notifBRI}</p>
+              </div>
+              <img className={classes.card} src={cardmandiri} alt="credit-card" />
+              <div className={classes.copyWraper}>
+                <img className={classes.copy} src={numbercopy} onClick={copyTextMandiri} alt="copy-text" />
+                <p className={classes.notifCopy}>{notifMandiri}</p>
               </div>
             </div>
             <div className={classes.infoWrapper}>
               <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
               <p className={classes.infoDetail}>
                 Nama : Khamiem Masduki, S.Pd. <br />
-                Alamat : Jalan Kelurahan Pangkalan Jati RT. 03/02 No. 65F, Kelurahan Pangkalan Jati, Kecamatan
-Cinere, Kota Depok, Jawa Barat 16513<br />
+                Alamat : Jalan Kelurahan Pangkalan Jati RT. 03/02 No. 65F,<br />
+                Kelurahan Pangkalan Jati, Kecamatan Cinere,<br />
+                Kota Depok, Jawa Barat 16513<br />
               </p>
               <div className={classes.copyWraper}>
                 <img className={classes.copy} src={numbercopy} onClick={copyAddress} alt="copy-text" />
@@ -834,8 +910,11 @@ Cinere, Kota Depok, Jawa Barat 16513<br />
         <Fade duration={3000}>
           <div className={classes.closingSentenceWrapper}>
             <p>
-              Bagi Kami Kehadiran & doa Anda<br /> merupakan keberkahan, kehormatan serta kebahagiaan.<br />
-              Dari hati yang terdalam, kami ucapkan terima kasih
+              Kehadiran & doa Anda adalah berkah, kehormatan<br/>
+              & kebahagiaan bagi kami.<br/>
+              Kami mengatakan dari hati kami yang terdalam<br/>
+              atas perhatian Anda<br/>
+              Terima kasih
             </p>
           </div>
         </Fade>
@@ -870,11 +949,16 @@ Cinere, Kota Depok, Jawa Barat 16513<br />
         {generateGallery()}
         {summarySection()}
         {generateBridesProfile()}
+        {generateSecondGallery()}
+        {eventTasyakuran()}
+        {generateThirdGallery()}
         {eventDetail()}
-        {!isIOS ? thirdImageSeparator() : iosThirdImageSeparator()}
+        {generateFourGallery()}
         {attendingSection()}
-        {generateMessageSection()}
+        {generateFiveGallery ()}
         {giftSection()}
+        {generateSixGallery()}
+        {generateMessageSection()}
         {closingSection()}
         {footerSection()}
         <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} />

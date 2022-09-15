@@ -39,7 +39,7 @@ const PopupProkes = withStyles(styles)((props) => {
         style={{
           overflowY: "hidden",
           backgroundColor: "#000000",
-          backgroundImage: `url(${kpopupBg})`,
+          backgroundImage: `url(https://res.cloudinary.com/dwvzfit8v/image/upload/v1663224422/Invitation%20Assets/khamim/Prokeswp_n33nqf.webp)`,
           backgroundRepeat: 'no-repeat',
           width: !isMobile && '360px',
           backgroundSize: 'cover',
