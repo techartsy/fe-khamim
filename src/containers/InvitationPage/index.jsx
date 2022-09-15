@@ -367,6 +367,10 @@ const InvitationPage = () => {
     window.open('https://goo.gl/maps/f7CBLzFZtTgT66MH8','_blank')
   };
 
+  const goToWeb = () => {
+    window.open('https://techartsyindonesia.netlify.app/','_blank')
+  };
+
   const radioAttend = (e) => {
     setAttend(e.target.value);
   };
@@ -935,8 +939,7 @@ const InvitationPage = () => {
   const footerSection = () => {
     return (
       <div className={classes.footerContainer}>
-        <p className={classes.colaboration}>In Colaboration</p>
-        <img className={classes.brand} alt='techartsyGold' src={width === 'lg' ? logoGold : logoSm} />
+        <img className={classes.brand} onClick={goToWeb} alt='techartsyGold' src={width === 'lg' ? logoGold : logoSm} />
         <a
           rel="noreferrer"
           href="https://wa.me/62895706454243?text=Hallo%20saya%20mau%20pesan%20Undangan%20..."
