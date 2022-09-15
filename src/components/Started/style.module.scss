@@ -47,17 +47,15 @@
       }
     }
     .btn {
-      width: 100%;
-      margin-top: 65%;
-      padding-left: 10%;
       @include content-center;
       @include directionX;
+      width: 100%;
+      padding-left: 10%;
       border-radius: 6px;
       color: $color-black;
       font-size: 14px;
       min-width: 110px;
       margin-top: 4%;
-      margin-bottom: 5%;
       position: relative;
       z-index: 1;
       .image {
@@ -69,14 +67,9 @@
       }
     }
     .bottom {
-      @include apply-at-lg-size {
-        width: 360px;
-      }
-      @include apply-at-sm-md-size {
-        position: fixed;
-        bottom: 0px;
-        z-index: 0;
-      }
+      position: fixed;
+      bottom: 0px;
+      z-index: 0;
       width: 100%;
     }
   }
