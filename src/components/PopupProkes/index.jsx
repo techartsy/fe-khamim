@@ -7,7 +7,6 @@ import Mask from "../../static/icons/mask.png";
 import Distancing from "../../static/icons/distancing.png";
 import Hand from "../../static/icons/hand.png";
 import Temp from "../../static/icons/temperature.png";
-import kpopupBg from '../../static/images/kpopupBg.png';
 import classes from "./style.module.scss";
 
 const styles = (theme) => ({

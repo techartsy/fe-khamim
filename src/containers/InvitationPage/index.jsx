@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import Fade from 'react-reveal/Fade';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import Alert from '@material-ui/lab/Alert';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { isIOS } from 'react-device-detect';
+import { isIOS, isMobile } from 'react-device-detect';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
@@ -25,24 +26,15 @@ import AudioComponent from '../../components/AudioPlayer';
 import PopupProkes from '../../components/PopupProkes';
 import PopupGiftConfirmation from '../../components/PopupGiftConfirmation';
 import PopupVoiceRecognition from '../../components/PopupVoiceRecog';
+import { Images } from '../../utils/imageHelper';
 
-import ksection2 from '../../static/images/ksection2.png';
-import ksection3 from '../../static/images/ksection3.png';
-import ksection31 from '../../static/images/ksection31.png';
-import Male from '../../static/images/male.png';
-import Female from '../../static/images/female.png';
 import WingTop from '../../static/images/wing-top.png';
 import WingBottom from '../../static/images/wing-bottom.png';
-import Frame from '../../static/images/frame.png';
 import wingg from '../../static/images/wingg.png';
 import topevent from '../../static/images/topevent.png';
-import kattendingmeessage from '../../static/images/kattendingmeessage.png';
-import gunungan from '../../static/images/gunungan.png';
-import MessageImg from '../../static/images/kgreetingsection.png';
 import ClosingWing from '../../static/images/closing-wing.png';
 import wingribbon from '../../static/images/wingribbon.png';
 import rosegift from '../../static/images/rosegift.png';
-import creditcard from '../../static/images/creditcard.png';
 import numbercopy from '../../static/images/numbercopy.png';
 import logoGold from '../../static/images/logoGold.png';
 import logoSm from '../../static/images/logo-sm.png';
@@ -54,19 +46,8 @@ import dropdown from '../../static/icons/dropdown.png';
 import dropup from '../../static/icons/dropup.png';
 import Mail from '../../static/icons/mail.png';
 import whatsapp from '../../static/icons/whatsapp.png';
-import Story from '../../static/images/story.png';
-import ThirdImageSM from '../../static/images/thirdimage-sm.png';
 import ArRum from '../../static/images/Ar-rum.png';
 import classes from './style.module.scss';
-
-const Section9 = 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663226908/Invitation%20Assets/khamim/Section_9wp_okoxgm.webp';
-const Section11= 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663231629/Invitation%20Assets/khamim/Section_11-1wp_l5zkmy.webp';
-const Section13= 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663240465/Invitation%20Assets/khamim/Section_13-1wp_ygxoa7.webp';
-const Section14= 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663240702/Invitation%20Assets/khamim/Section_14wp_umr5st.webp';
-const Section16= 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663241811/Invitation%20Assets/khamim/Section_16wp_r2qc93.webp';
-const cardbri='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663243071/Invitation%20Assets/khamim/briwp_szsaq6.webp';
-const cardmandiri= 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663243074/Invitation%20Assets/khamim/mandiriwp_qytlet.webp';
-const Section18= 'https://res.cloudinary.com/dwvzfit8v/image/upload/v1663245346/Invitation%20Assets/khamim/section_18-1wp_woqbdu.webp';
 
 const InvitationPage = () => {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
@@ -76,7 +57,10 @@ const InvitationPage = () => {
   const [closeGift, setCloseGift] = useState(true);
   const [guestName, setGuestName] = useState('');
   const [address, setAddress] = useState('');
-  const [attend, setAttend] = useState('');
+  const [errorAlert, setErrorAlert] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successAlert, setSuccessAlert] = useState(false);
+  const [attend, setAttend] = useState('present');
   const [showPopupProkes, setShowPopupProkes] = useState(false);
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const [notifBRI, setNotifBRI] = useState('');
@@ -99,7 +83,6 @@ const InvitationPage = () => {
   var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
   var SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
-
   const messages = useSelector(state => state.invitationReducer.messages);
   const isError = useSelector(state => state.invitationReducer.isError);
   const confirmationErrorMessage = useSelector(state => state.invitationReducer.confirmationErrorMessage);
@@ -114,7 +97,6 @@ const InvitationPage = () => {
   const [note, setNote] = useState('' || transcript);
 
   const onStartRecognition = () => {
-    console.log('masuk')
     SpeechRecognition.startListening({
       continuous: true,
       language: 'id'
@@ -123,6 +105,7 @@ const InvitationPage = () => {
 
   const onChangeNote = (text) => {
     setNote(text);
+    resetTranscript();
     if (note.length === 0) {
       resetTranscript();
     }
@@ -153,7 +136,6 @@ const InvitationPage = () => {
   };
 
   const addEvent = () => {
-    console.log(window, '<< window')
     gapi.load('client:auth2', () => {
       gapi.client.init({
         apiKey: API_KEY,
@@ -167,10 +149,10 @@ const InvitationPage = () => {
       .then(() => {
         var event = {
           'summary': 'Ririn & Khamiem Wedding Day',
-          'location': 'Jl. Sambiroto VII RT.10 RW.02, Tembalang, Semarang',
+          'location': 'Dusun Cikalong RT. 01/RW. 01 Desa Tomo, Kecamatan Tomo, Kabupaten Sumedang, Jawa Barat',
           'description': 'Wedding Invitation',
           'start': {
-            'dateTime': '2022-10-02T10:00:00',
+            'dateTime': '2022-10-02T09:00:00',
             'timeZone': 'Asia/Jakarta',
           },
           'end': {
@@ -194,7 +176,6 @@ const InvitationPage = () => {
           'resource': event,
         })
         request.execute(response => {
-          console.log(response, '<< response')
           window.open(response.htmlLink)
         })
       })
@@ -216,6 +197,20 @@ const InvitationPage = () => {
   useEffect(() => {
     dispatch(getAllGuest())
   }, []);
+
+  useEffect(() => {
+    if (successAlert) {
+      setTimeout(() => {
+        setSuccessAlert(false)
+        resetForm('');
+      }, 3000);
+    } else {
+      setTimeout(() => {
+        setErrorAlert(false);
+        setErrorMessage('');
+      }, 3000);
+    }
+  }, [errorAlert, successAlert])
 
   useEffect(() => {
     if (isError) {
@@ -376,21 +371,35 @@ const InvitationPage = () => {
     setAttend(e.target.value);
   };
 
+  const resetForm = () => {
+    setGuestName('');
+    setAddress('');
+    setNote('');
+    setAttend('present');
+    resetTranscript();
+    setErrorMessage('');
+  }
+
   const onSubmitRadios = (e) => {
     e.preventDefault();
     const payload = {
       name: guestName,
       address,
       attend,
-      message: note,
+      message: !_.isEmpty(transcript) ? `${note} ${transcript}` : `${note}${transcript}`,
       pax: '',
     }
-    dispatch(submitRegistration(payload, Toast.fire({
-      icon: 'success',
-      title: 'Pesan Terkirim',
-      background: 'black',
-      color: '#fbd258',
-    })));
+    dispatch(submitRegistration(
+      payload,
+      (errMsg) => {
+        setErrorMessage(errMsg);
+        setErrorAlert(true)
+      },
+      () => {
+        setSuccessAlert(true);
+        resetForm();
+      }
+    ));
     setGuestName('');
     setAddress('');
     setNote('');
@@ -436,7 +445,7 @@ const InvitationPage = () => {
           </div>
         </div>
         <div className={classes.imageWrapper}>
-          <img src='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663173709/Invitation%20Assets/khamim/Section_2-1_ckbqnf.webp' alt='Brides' />
+          <img src={Images.firstStory} alt='Brides' />
         </div>
       </div>
     );
@@ -446,7 +455,7 @@ const InvitationPage = () => {
     return (
       <div className={classes.secondStoryContainer}>
         <div className={classes.imageWrapper}>
-          <img src='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663174305/Invitation%20Assets/khamim/Section_3_nuffhd.webp' alt="Brides" />
+          <img src={Images.secondStory} alt="Brides" />
         </div>
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
@@ -497,7 +506,7 @@ const InvitationPage = () => {
           </div>
         </div>
         <div className={classes.imageWrapper}>
-          <img src='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663175181/Invitation%20Assets/khamim/Section_4wp_ej6bpz.webp' alt='Brides' />
+          <img src={Images.thirdStory} alt='Brides' />
         </div>
       </div>
     );
@@ -520,7 +529,7 @@ const InvitationPage = () => {
           </div>
         </div>
         <div className={classes.imageWrapper}>
-          <img src='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663175292/Invitation%20Assets/khamim/Section_5wp_m4beqy.webp' alt='Brides' />
+          <img src={Images.fourthStory} alt='Brides' />
         </div>
       </div>
     );
@@ -529,8 +538,8 @@ const InvitationPage = () => {
   const generateGallery = () =>{
     return(
       <div className={classes.galleryContainer}>
-        <img src="https://res.cloudinary.com/dwvzfit8v/image/upload/v1663176695/Invitation%20Assets/khamim/Section_6-1wp_g37wqb.webp" alt="gallery-item" />
-        <img src="https://res.cloudinary.com/dwvzfit8v/image/upload/v1663176690/Invitation%20Assets/khamim/Section_6-2wp_bvvwxt.webp" alt="gallery-item" />
+        <img src={Images.firstGalleryItem} alt="gallery-item" />
+        <img src={Images.secondGalleryItem} alt="gallery-item" />
       </div>
     )
   };
@@ -542,7 +551,7 @@ const InvitationPage = () => {
           <div className={classes.summaryWraper}>
             <Fade duration={4000}>
               <div className={classes.ornamentWrapper}>
-                <img src="https://res.cloudinary.com/dwvzfit8v/image/upload/v1663177618/Invitation%20Assets/khamim/Section_7-1wp_silyyc.webp" alt="ornament" />
+                <img src={Images.summaryOrnament} alt="ornament" />
               </div>
               <div className={classes.title}>
                 <p>
@@ -578,7 +587,7 @@ const InvitationPage = () => {
         <div className={classes.profileWrapper}>
           <Fade left duration={3000}>
             <div className={classes.card}>
-              <img className={classes.bridesImage} src='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663179283/Invitation%20Assets/khamim/bridewp_imthv2.webp' alt="brides" />
+              <img className={classes.bridesImage} src={Images.brides} alt="brides" />
               <div className={classes.profileInfo}>
                 <p className={classes.bridess}>Ririn Wulansari, S.Pd.</p>
                 <p className={classes.parents}>Putri Kedua dari{width === 'lg' && <br />} Bapak Zeni Trian Rikanda & Ibu Soniyah</p>
@@ -587,7 +596,7 @@ const InvitationPage = () => {
           </Fade>
           <Fade right duration={3000}>
             <div className={classes.card}>
-              <img className={classes.bridesImage} src='https://res.cloudinary.com/dwvzfit8v/image/upload/v1663179278/Invitation%20Assets/khamim/groomwp_yzy4wf.webp' alt="brides" />
+              <img className={classes.bridesImage} src={Images.groom} alt="brides" />
               <div className={classes.profileInfo}>
                 <p className={classes.bridess}>Khamiem Masduki, S.Pd. </p>
                 <p className={classes.parents}>Putra Pertama dari{width === 'lg' && <br />} Bapak Rochmat (Alm.) & Ibu Kalsumi</p>
@@ -605,7 +614,7 @@ const InvitationPage = () => {
   const generateSecondGallery = () => {
     return (
       <div className={classes.gallerySecondContainer}>
-        <img src={Section9} alt="foto" />
+        <img src={Images.Section9} alt="foto" />
       </div>
     )
   }
@@ -657,7 +666,7 @@ const InvitationPage = () => {
   const generateThirdGallery = () => {
     return (
       <div className={classes.galleryThirdContainer}>
-        <img src={Section11} alt="foto" />
+        <img src={Images.Section11} alt="foto" />
       </div>
     )
   }
@@ -723,7 +732,7 @@ const InvitationPage = () => {
   const generateFourGallery = () => {
     return (
       <div className={classes.galleryFourContainer}>
-        <img src={Section13} alt="foto" />
+        <img src={Images.Section13} alt="foto" />
       </div>
     )
   }
@@ -745,7 +754,7 @@ const InvitationPage = () => {
                 <div className={classes.inputs}>
                   <input type='text' value={guestName} placeholder='Nama' required onChange={(e) => setGuestName(e.target.value)} />
                   <input type='text' placeholder='Alamat' value={address} required onChange={(e) => setAddress(e.target.value)} />
-                  <textarea type='text' placeholder='Kirim Ucapan & Doa' value={note || transcript} onChange={(e) => onChangeNote(e.target.value)} />
+                  <textarea type='text' placeholder='Kirim Ucapan & Doa' value={!_.isEmpty(transcript) ? `${note} ${transcript}` : `${note}${transcript}`} onChange={(e) => onChangeNote(e.target.value)} />
                   {browserSupportsSpeechRecognition &&
                     <div className={classes.iconContainer}>
                       <div
@@ -765,11 +774,11 @@ const InvitationPage = () => {
                   <p>Konfirmasi</p>
                   <div className={classes.radioWrapper}>
                     <div className={classes.radioItem}>
-                      <input className={classes.radioItem} type='radio' name='attend' value='present' required ></input>
+                      <input className={classes.radioItem} type='radio' name='attend' checked={attend === 'present'} value='present' required ></input>
                       <label for='attend'>Akan Hadir</label>
                     </div>
                     <div className={classes.radioItem}>
-                      <input className={classes.radioItem} type='radio' name='attend' value='absence' required></input>
+                      <input className={classes.radioItem} type='radio' name='attend' checked={attend === 'absence'} value='absence' required></input>
                       <label for='attend'>Berhalangan Hadir</label>
                     </div>
                   </div>
@@ -780,7 +789,7 @@ const InvitationPage = () => {
           </div>
           <Fade duration={3000}>
             <div className={classes.expressionSection}>
-              <img src={Section14} alt="attending" />
+              <img src={Images.Section14} alt="attending" />
               <p className={classes.expression}>
                 Ungkapan terima kasih yang tulus dari kami apabila<br />
                 Bapak/Ibu/Teman-teman berkenan hadir <br />
@@ -796,7 +805,7 @@ const InvitationPage = () => {
   const generateFiveGallery = () => {
     return (
       <div className={classes.galleryFiveContainer}>
-        <img src={Section16} alt="foto" />
+        <img src={Images.Section16} alt="foto" />
       </div>
     )
   }
@@ -804,7 +813,7 @@ const InvitationPage = () => {
   const generateSixGallery = () => {
     return (
       <div className={classes.gallerySixContainer}>
-        <img src={Section18} alt="foto" />
+        <img src={Images.Section18} alt="foto" />
       </div>
     )
   }
@@ -820,7 +829,7 @@ const InvitationPage = () => {
           </Fade>
           <div className={classes.rightSection}>
             <div className={classes.imgWrapper}>
-              <img className={classes.image} src={Section14} alt="message" />
+              <img className={classes.image} src={Images.Section14} alt="message" />
               <p>“ Seutas Doa & Ucapan Untuk Kedua Mempelai ”</p>
             </div>
             <div className={classes.messageWrapper}>
@@ -870,12 +879,12 @@ const InvitationPage = () => {
           <div className={`${classes.giftInfoWraper} ${isShowGift ? classes.showGift : classes.hideGift} ${closeGift ? classes.closeGift : ''}`}>
             <div className={classes.imageDetail}>
               <img className={classes.rose} src={rosegift} alt="rose" />
-              <img className={classes.card} src={cardbri} alt="credit-card" />
+              <img className={classes.card} src={Images.cardbri} alt="credit-card" />
               <div className={classes.copyWraper}>
                 <img className={classes.copy} src={numbercopy} onClick={copyTextBri} alt="copy-text" />
                 <p className={classes.notifCopy}>{notifBRI}</p>
               </div>
-              <img className={classes.card} src={cardmandiri} alt="credit-card" />
+              <img className={classes.card} src={Images.cardmandiri} alt="credit-card" />
               <div className={classes.copyWraper}>
                 <img className={classes.copy} src={numbercopy} onClick={copyTextMandiri} alt="copy-text" />
                 <p className={classes.notifCopy}>{notifMandiri}</p>
@@ -941,6 +950,34 @@ const InvitationPage = () => {
   const generateInvitation = () => {
     return (
       <div className={classes.invitationContainer}>
+        {
+          errorAlert &&
+          <Alert
+            severity="error"
+            style={{
+              position: 'fixed',
+              zIndex: 5,
+              marginTop: (isMobile || width === 'sm') ? '7%' : '2%',
+              left: (isMobile || width === 'sm') ? 10 : '35%',
+              right: (isMobile || width === 'sm') && 10,
+              width: (isMobile || width === 'sm') ? '85%' : '30%'}}>
+            {!_.isEmpty(errorMessage) ? errorMessage : 'Oops, something went wrong. Please try again'}
+          </Alert>
+        }
+        {
+          successAlert &&
+          <Alert
+            severity="success"
+            style={{
+              position: 'fixed',
+              zIndex: 5,
+              marginTop: (isMobile || width === 'sm') ? '7%' : '2%',
+              left: (isMobile || width === 'sm') ? 10 : '35%',
+              right: (isMobile || width === 'sm') && 10,
+              width: (isMobile || width === 'sm') ? '85%' : '30%'}}>
+            Thank you for your registration
+          </Alert>
+        }
         {generateHeader()}
         {generateStory()}
         {generateSecondStory()}
